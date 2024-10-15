@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const double buttonBorderRadius = 20;
+    const double buttonBorderRadius = 25;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -86,37 +86,48 @@ class _MyAppState extends State<MyApp> {
                   const SizedBox(height: 30),
                   GestureDetector(
                     onTap: _switchFont,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(buttonBorderRadius),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius:
-                              BorderRadius.circular(buttonBorderRadius),
-                          onTap: _switchFont,
-                          splashColor: Colors.blue.withOpacity(0.3),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/fontsy_fonter_switcher.jpeg'),
-                                fit: BoxFit.cover,
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(buttonBorderRadius),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 10,
+                                spreadRadius: 5,
                               ),
-                              borderRadius: BorderRadius.circular(
-                                  15), // Ensure rounded corners
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 10,
-                                  spreadRadius: 5,
-                                ),
-                              ],
-                            ),
-                            width: 150,
-                            height: 150,
+                            ],
                           ),
                         ),
-                      ),
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(buttonBorderRadius),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius:
+                                  BorderRadius.circular(buttonBorderRadius),
+                              onTap: _switchFont,
+                              splashColor: Colors.blue.withOpacity(0.3),
+                              child: Ink(
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/fontsy_fonter_switcher.jpeg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                width: 150,
+                                height: 150,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 20),
